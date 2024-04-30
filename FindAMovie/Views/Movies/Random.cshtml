@@ -1,7 +1,37 @@
-﻿@model FindAMovie.Models.Movie
+﻿@model FindAMovie.Models.ViewModels.RandomMovieViewModel
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+<style>
+    .popular {
+        font-weight: bold;
+        color: lightgreen;
+    }
+</style>
+
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
+
+@* First way of passing data from controller to view. Fragile and not preferred.
+    <h2>@( ((Movie) ViewData["Movie"]).Name )</h2> *@
+
+@* Second way of passing data from controller to view. Inflexible and not preferred.
+    @ViewBag.Movie *@
+
+@* Third and preferred way of passing data from controller to view *@
+<h2 class="@className">@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this movie before.</p>
+}
+
+<ul>
+    @foreach (var customer in Model.Customers)
+    {
+        <li>@customer.Id | @customer.Name</li>
+    }
+</ul>

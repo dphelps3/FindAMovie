@@ -13,6 +13,16 @@ namespace FindAMovie
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+            // Example of a convention-based route set
+            //routes.MapRoute(
+            //    "MoviesByReleaseDate",
+            //    "movies/released/{year}/{month}",
+            //    new { controller = "Movies", action = "ByReleaseDate" },
+            //    new { year = @"\d{4}", month = @"\d{2}" }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

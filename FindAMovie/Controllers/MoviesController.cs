@@ -4,23 +4,57 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FindAMovie.Models;
+using FindAMovie.Models.ViewModels;
 
 namespace FindAMovie.Controllers
 {
     public class MoviesController : Controller
     {
+        // Movies
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         // GET: Movies/Random
         public ActionResult Random()
         {
-            var movie = new Movie()
-            {
-                Name = "Iron Man"
+            var movie = new Movie() 
+            { 
+                Name = "Iron Man" 
             };
 
-            return View(movie);
+            var customers = new List<Customer>
+            {
+                new Customer { Id = 2, Name = "Aaron Rodgers" },
+                new Customer { Id = 1, Name = "Brett Favre" },
+                new Customer { Id = 3, Name = "Jordan Love" }
+            };
+
+            var viewModel = new RandomMovieViewModel()
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            // 1 way to pass data to the view (inflexible approach)
+            //ViewData["Movie"] = movie;
+            
+            // 2nd way to pass data to the view (inflexible approach)
+            //ViewBag.Movie = movie;
+
+            // 3rd and preferred approach of passing data to the view
+            // passes the entire movie object through the View parameter
+            return View(viewModel);
 
             // example of a redirect with parameter values
             //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "name" });
+        }
+
+        [Route("movies/released/{year:regex(\\d{4}):range(1111, 9999)}/{month:regex(\\d{2}):range(1, 12)}")]
+        public ActionResult ByReleaseYear(int year, int month)
+        {
+            return Content(year.ToString("0000") + "/" + month.ToString("00"));
         }
 
         public ActionResult Edit(int id)
@@ -32,19 +66,19 @@ namespace FindAMovie.Controllers
         // int?
         // Nullable<int>
         // Nullable<System.Int32>
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if (!pageIndex.HasValue)
-            {
-                pageIndex = 1;
-            }
+        //public ActionResult Index(int? pageIndex, string sortBy)
+        //{
+        //    if (!pageIndex.HasValue)
+        //    {
+        //        pageIndex = 1;
+        //    }
 
-            if (String.IsNullOrEmpty(sortBy))
-            {
-                sortBy = "Name";
-            }
+        //    if (String.IsNullOrEmpty(sortBy))
+        //    {
+        //        sortBy = "Name";
+        //    }
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
-        }
+        //    return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+        //}
     }
 }

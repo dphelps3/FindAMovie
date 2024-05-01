@@ -1,8 +1,35 @@
-﻿
+﻿@model IEnumerable<FindAMovie.Models.Customer>
+
 @{
     ViewBag.Title = "Customers";
 }
 
 <h2>Customers</h2>
 
-<p>We don't have any customers yet.</p>
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Is Subscribed?</th>
+                <th>Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    @*<td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>*@
+                    <td>@customer.Name</td>
+                    <td>@(customer.IsSubscribedToNewsletter ? "Yes" : "No")</td>
+                    <td>@customer.MembershipTypeId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We don't have any customers yet.</p>
+}

@@ -11,19 +11,18 @@
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Is Subscribed?</th>
-                <th>Membership Type</th>
+                <th width="200">Name</th>
+                <th width="200">Discount Rate</th>
+                <th width="200">Is Subscribed?</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var customer in Model)
             {
                 <tr>
-                    @*<td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>*@
-                    <td>@customer.Name</td>
-                    <td>@(customer.IsSubscribedToNewsletter ? "Yes" : "No")</td>
-                    <td>@customer.MembershipTypeId</td>
+                    <td width="200">@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                    <td width="200">@customer.MembershipType.Name</td>
+                    <td width="200">@(customer.IsSubscribedToNewsletter ? "Yes" : "No")</td>
                 </tr>
             }
         </tbody>

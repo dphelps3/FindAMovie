@@ -1,0 +1,12 @@
+﻿@model FindAMovie.Models.Customer
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+    @*<li>@(Model.MembershipType.Name != null ? Model.MembershipType.Name : "")</li>*@
+</ul>

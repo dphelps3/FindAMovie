@@ -1,32 +1,43 @@
-﻿@{
+﻿@model IEnumerable<FindAMovie.Models.Movie>
+
+@{
     ViewBag.Title = "Movies";
 }
 
-<h2>@ViewBag.Title</h2>
+ @*public string Name { get; set; }
+ public int Type { get; set; }
+ public string Genre { get; set; }
+ public DateTime? DateReleased { get; set; }
+ public DateTime? DateAdded { get; set; }
+ public int InStock { get; set; }*@
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Movie</th>
-            <th scope="col">Actor</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Back to the Future</td>
-            <td>Michael J. Fox</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>No Hard Feelings</td>
-            <td>Jennifer Lawrence</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Moneyball</td>
-            <td>Brad Pitt</td>
-        </tr>
-    </tbody>
-</table>
+<h2>Movies</h2>
+
+@if (Model.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th width="260">Name</th>
+                <th width="200">Genre</th>
+                <th width="200">Date Released</th>
+                <th width="200">In Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td width="260">@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                    <td width="200">@movie.Genre</td>
+                    <td width="200">@movie.DateReleased.Value.ToShortDateString()</td>
+                    <td width="200">@movie.InStock</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We don't have any movies yet.</p>
+}

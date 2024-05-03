@@ -154,6 +154,14 @@
     <Compile Include="Migrations\202405031736013_AddMovieProperties.designer.cs">
       <DependentUpon>202405031736013_AddMovieProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405031959353_MakeMoviePropertiesNotNull.cs" />
+    <Compile Include="Migrations\202405031959353_MakeMoviePropertiesNotNull.designer.cs">
+      <DependentUpon>202405031959353_MakeMoviePropertiesNotNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405032002367_MakeMoreMoviePropertiesNotNull.cs" />
+    <Compile Include="Migrations\202405032002367_MakeMoreMoviePropertiesNotNull.designer.cs">
+      <DependentUpon>202405032002367_MakeMoreMoviePropertiesNotNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -221,6 +229,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +279,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405031736013_AddMovieProperties.resx">
       <DependentUpon>202405031736013_AddMovieProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405031959353_MakeMoviePropertiesNotNull.resx">
+      <DependentUpon>202405031959353_MakeMoviePropertiesNotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405032002367_MakeMoreMoviePropertiesNotNull.resx">
+      <DependentUpon>202405032002367_MakeMoreMoviePropertiesNotNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

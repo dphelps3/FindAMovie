@@ -22,10 +22,12 @@ namespace FindAMovie.Controllers
             _context.Dispose();
         }
 
-        // Movies
+        // GET: Movies
         public ActionResult Index()
         {
-            return View();
+            var movies = _context.Movies.ToList();
+
+            return View(movies);
         }
 
         // GET: Movies/Random

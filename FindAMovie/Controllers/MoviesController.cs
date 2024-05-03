@@ -10,6 +10,18 @@ namespace FindAMovie.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // Movies
         public ActionResult Index()
         {
@@ -60,6 +72,19 @@ namespace FindAMovie.Controllers
         public ActionResult Edit(int id)
         {
             return Content("id=" + id);
+        }
+
+        // GET: Movies/Details/1
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(movie);
         }
 
         // nullable types: all of the following do the same thing

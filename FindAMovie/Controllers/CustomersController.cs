@@ -1,4 +1,5 @@
 ﻿using FindAMovie.Models;
+using FindAMovie.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -24,7 +25,13 @@ namespace FindAMovie.Controllers
 
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
         }
 
         // GET: Customers

@@ -23,6 +23,8 @@ namespace FindAMovie
             //    new { year = @"\d{4}", month = @"\d{2}" }
             //);
 
+            routes.LowercaseUrls = true;
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

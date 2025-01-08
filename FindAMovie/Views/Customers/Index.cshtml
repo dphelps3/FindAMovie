@@ -20,7 +20,7 @@
             @foreach (var customer in Model)
             {
                 <tr>
-                    <td width="200">@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                    <td width="200">@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                     <td width="200">@customer.MembershipType.Name</td>
                     <td width="200">@(customer.IsSubscribedToNewsletter ? "Yes" : "No")</td>
                 </tr>
